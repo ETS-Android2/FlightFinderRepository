@@ -113,6 +113,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="32dp"
+        android:backgroundTint="#1565C0"
         android:text="Sign up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonLoginMainPage"
@@ -124,6 +125,7 @@
         android:layout_height="64dp"
         android:layout_marginEnd="52dp"
         android:layout_marginBottom="32dp"
+        android:backgroundTint="#1565C0"
         android:text="Sign IN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -138,6 +140,7 @@
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#0277BD"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -152,5 +155,62 @@
         android:background="@color/black"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
+
+    <Switch
+        android:id="@+id/inputOneWay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:minHeight="48dp"
+        android:text="One Way"
+        app:layout_constraintBottom_toTopOf="@+id/searchView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/inputSpinnerNOP"
+        android:layout_width="145dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="80dp"
+        android:entries="@array/arrayNumPassenger"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputReturnDate" />
+
+    <TextView
+        android:id="@+id/labelNumberOfPassengers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="12dp"
+        android:text="Travellers:"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/inputSpinnerNOP"
+        app:layout_constraintTop_toBottomOf="@+id/inputReturnDate" />
+
+    <TextView
+        android:id="@+id/labelNOPDynamic"
+        android:layout_width="23dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="60dp"
+        android:text="1"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/labelNumberOfPassengers"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelReturn" />
+
+    <Button
+        android:id="@+id/buttonSearch"
+        android:layout_width="171dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#1565C0"
+        android:text="Search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputSpinnerNOP" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
