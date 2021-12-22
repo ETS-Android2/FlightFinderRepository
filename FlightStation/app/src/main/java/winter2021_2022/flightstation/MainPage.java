@@ -7,42 +7,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
-    private Button move;
+public class MainPage extends AppCompatActivity {
+    private Button login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_page);
 
-        this.move=findViewById(R.id.buttonAct1);
-        this.move.setOnClickListener(new View.OnClickListener() {
+        this.login = findViewById(R.id.buttonLogin);
+        this.login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                Intent intent = new Intent(MainPage.this, LoginPage.class);
                 startActivity(intent);
             }
         });
     }
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
