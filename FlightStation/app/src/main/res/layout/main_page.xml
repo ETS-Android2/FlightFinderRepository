@@ -7,7 +7,7 @@
     tools:context=".MainPage">
 
     <Button
-        android:id="@+id/buttonLogin"
+        android:id="@+id/buttonLoginMainPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="50dp"

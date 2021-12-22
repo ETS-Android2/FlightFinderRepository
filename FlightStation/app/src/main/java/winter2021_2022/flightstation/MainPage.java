@@ -15,7 +15,7 @@ public class MainPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_page);
 
-        this.login = findViewById(R.id.buttonLogin);
+        this.login = findViewById(R.id.buttonLoginMainPage);
         this.login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
