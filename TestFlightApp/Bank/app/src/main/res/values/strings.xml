@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Bank App - AdnanFahad Faizi (217905928)</string>
+    <string-array name="services" >
+        <item>Deposit</item>
+        <item>Withdraw</item>
+        <item>Transfer</item>
+        <item>Print Statement</item>
+    </string-array>
+</resources>
