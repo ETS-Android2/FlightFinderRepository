@@ -16,6 +16,7 @@ import java.util.Calendar;
 
 public class MainPage extends AppCompatActivity {
     private Button login;
+    private Button signup;
 
     /* Used for departure and return dates */
     Calendar calendar = Calendar.getInstance();
@@ -23,10 +24,12 @@ public class MainPage extends AppCompatActivity {
     final int month = calendar.get(Calendar.MONTH);
     final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
+    /* Calendar related attributes */
     TextView departDate;
     DatePickerDialog.OnDateSetListener setListenerDepart;
     TextView returnDate;
     DatePickerDialog.OnDateSetListener setListenerReturn;
+    /*************************************************/
 
 
     @Override
@@ -87,6 +90,16 @@ public class MainPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainPage.this, LoginPage.class);
+                startActivity(intent);
+            }
+        });
+
+        // changing from MainPage -> SignUpPage
+        this.signup = findViewById(R.id.buttonSignUp);
+        this.signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainPage.this, SignupPage.class);
                 startActivity(intent);
             }
         });
