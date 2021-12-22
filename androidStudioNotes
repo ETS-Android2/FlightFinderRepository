@@ -1,0 +1,7 @@
+Things to modify while working on AndroidStudio:
+  - ProjectName/Java/MainActivity (similar to MainClass)
+  - ProjectName/Tests(junitTests)
+  - ProjectName/res/Layout/activity_main.xml (includes the layout and frontend of the app)
+  - ProjectName/res/Values/Strings (For dropDownListOfStrings)
+  - plainerNames
+  - Adding entries if applicable
