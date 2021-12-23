@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FlightStation">
         <activity
+            android:name=".Search"
+            android:exported="false" />
+        <activity
+            android:name=".ProfilePage"
+            android:exported="false" />
+        <activity
             android:name=".SignupPage"
             android:exported="false" />
         <activity
