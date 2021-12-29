@@ -1,14 +1,24 @@
 package winter2021_2022.flightstation;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import org.json.*;
+
+
+import java.io.*;
+import java.util.*;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.simple.*;
+import org.json.simple.parser.*;
+
 
 public class console {
 
@@ -21,7 +31,7 @@ public class console {
         StringBuilder responseContent = new StringBuilder(); // the type can be StringBuffer;
 
         try {
-            URL url = new URL("https://jsonplaceholder.typicode.com/albums");
+            URL url = new URL("https://jsonplaceholder.typicode.com/users");
             connection = (HttpURLConnection) url.openConnection();
 
             // Request Setup
@@ -31,7 +41,9 @@ public class console {
 
             int status = connection.getResponseCode();
 //            System.out.println(status);
-            parse(responseContent.toString());
+//            System.out.println(responseContent.toString());
+
+//            parse(responseContent.toString());
 
             if (status > 299) {
                 reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
@@ -47,37 +59,75 @@ public class console {
                 }
                 reader.close();
             }
-            System.out.println(responseContent.toString());
+
+            String s = responseContent.toString();
+//            System.out.println(responseContent.getClass());
+//            System.out.println(s);
+//            parse(s);
+
         } catch (IOException e){
             e.printStackTrace();
         }
     }
+//
+//    public static void parse(String s) {
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        ExampleClass example = objectMapper.readValue(s, ExampleClass.class);
+//
+//
+//    }
 
-    public static void parse(String responseBody) {
-        try {
-            JSONArray albumsArray = new JSONArray(responseBody);
-            for (int i = 0; i < albumsArray.length(); i ++) {
-                JSONObject album = albumsArray.getJSONObject(i);
-                int id = album.getInt("id");
-                int userId = album.getInt("userId");
-                String title = album.getString("title");
-                System.out.println(id + " "  + title + " " + userId );
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+//    public static void parse(String s) {
+//        try {
+//            Object student = new ObjectMapper().readValue(s, Object.class);
+//        } catch (JsonMappingException e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
 
 
-    }
+//    public static void parse(String content) {
+//        //JSON parser object to parse read file
+//
+//        JsonArray albums = new JsonArray(Collections.singleton(content));
+//
+//        for (int i = 0; i < albums.size(); i ++) {
+//            System.out.println(albums.get(i).getClass());
+//        }
+//    }
+
+
+
+//    public static void parse(String response) {
+//        JSONParser parser = new JSONParser();
+//        try {
+//            Object obj = parser.parse(response);
+//            JSONArray albumsArray = (JSONArray) obj;
+//            for (int i = 0; i < albumsArray.; i ++) {
+//                JSONObject album = albumsArray.getJSONObject(i);
+//                int id = album.getInt("id");
+//                int userId = album.getInt("userId");
+//                String title = album.getString("title");
+//                System.out.println(id + " "  + title + " " + userId );
+//            }
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+//    public static void parse(String response) {
+//        JSONObject obj = new JSONObject(json);
+//        String pageName = obj.getJSONObject("pageInfo").getString("pageName");
+//
+//        System.out.println(pageName);
+//
+//        JSONArray arr = obj.getJSONArray("posts");
+//        for (int i = 0; i < arr.length(); i++) {
+//            String post_id = arr.getJSONObject(i).getString("post_id");
+//            System.out.println(post_id);
+//        }
+//    }
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
