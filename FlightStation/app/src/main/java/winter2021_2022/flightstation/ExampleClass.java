@@ -2,15 +2,19 @@ package winter2021_2022.flightstation;
 
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.simple.JsonArray;
+import org.json.simple.JsonObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Collections;
+import java.util.HashMap;
 
 public class ExampleClass {
     // Requesting an HTTP Request;
@@ -22,6 +26,7 @@ public class ExampleClass {
         StringBuilder responseContent = new StringBuilder(); // the type can be StringBuffer;
 
         try {
+//            URL url = new URL("http://api.aviationstack.com/v1/flights?access_key=a040cf28d6f8b0e66f379a3f82fad839\n");
             URL url = new URL("https://jsonplaceholder.typicode.com/users");
             connection = (HttpURLConnection) url.openConnection();
 
@@ -48,17 +53,26 @@ public class ExampleClass {
             }
 
             String s = responseContent.toString();
-            System.out.println(responseContent.getClass());
-            System.out.println(s);
-//            parse(s);
+//            System.out.println(s.getClass());
+//            System.out.println(s);
+            parse(s);
+
 
         } catch (IOException e){
             e.printStackTrace();
         }
     }
 
-//    public static void parse(String content) {
-//        JSONp arr = new JsonArray(Collections.singleton(content));
-//        System.out.println(arr.get(0).getClass());
-//    }
+    public static void parse(String s) {
+        try {
+            JSONObject jsonObject = new JSONObject(s);
+            JSONArray jsonArray = jsonObject.getJSONArray("data");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
 }
