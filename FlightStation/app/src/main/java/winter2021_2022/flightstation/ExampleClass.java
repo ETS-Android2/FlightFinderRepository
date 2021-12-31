@@ -10,6 +10,7 @@ import org.json.simple.JsonObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -54,8 +55,8 @@ public class ExampleClass {
 
             String s = responseContent.toString();
 //            System.out.println(s.getClass());
-//            System.out.println(s);
-            parse(s);
+            System.out.println(s);
+//            parse(s);
 
 
         } catch (IOException e){
@@ -71,8 +72,5 @@ public class ExampleClass {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
-
-
 }
