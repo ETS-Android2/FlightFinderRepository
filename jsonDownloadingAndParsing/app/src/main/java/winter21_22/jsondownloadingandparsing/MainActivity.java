@@ -24,7 +24,10 @@ public class MainActivity extends AppCompatActivity {
     String result = "";
 
 //    String url = "https://jsonplaceholder.typicode.com/users";
-    String url ="http://api.aviationstack.com/v1/flights?access_key=a040cf28d6f8b0e66f379a3f82fad839\n";
+//    String url ="http://api.aviationstack.com/v1/flights?access_key=a040cf28d6f8b0e66f379a3f82fad839\n";
+     String url = "http://api.aviationstack.com/v1/flights?access_key=a040cf28d6f8b0e66f379a3f82fad839\n";
+//    String url = "https://api.npoint.io/1192ddce993fbd4bbc7e";
+//    String url = "https://api.npoint.io/8d8df57b1acc46aeb49d";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +57,9 @@ public class MainActivity extends AppCompatActivity {
                     builder.append(line);
                 }
                 result = builder.toString();
+                reader.close();
 
-                Log.e("Json", builder.toString());
+                Log.e("Json", result);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -69,12 +73,17 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(s);
             String names = "";
             try {
-                JSONObject jsO = new JSONObject(s);
-                JSONArray jsPagination = jsO.getJSONArray("data");
-                JSONObject object = jsPagination.getJSONObject(0);
+//                JSONObject jsO = new JSONObject(s);
+//                JSONArray jsPagination = jsO.getJSONArray("data");
+//                JSONObject object = jsPagination.getJSONObject(0);
 
+                JSONObject js0 = new JSONObject(s);
+//                JSONArray jsPagination = js0.getJSONArray("data");
+//                JSONObject flight = jsPagination.getJSONObject(0);
 
-                setContentsOfTextView(R.id.text, object.toString());
+//                JSONArray jsonArray = js0.getJSONArray("pagination");
+//                JSONObject js1 = jsonArray.getJSONObject(0);
+                setContentsOfTextView(R.id.text, js0.toString());
 
 
 //                JSONObject jsonObject = new JSONObject(s);
