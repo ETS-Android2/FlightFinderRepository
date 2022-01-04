@@ -25,7 +25,7 @@ public class ExampleClass {
         StringBuilder responseContent = new StringBuilder(); // the type can be StringBuffer;
 
         try {
-            URL url = new URL("http://api.aviationstack.com/v1/flights?access_key=a040cf28d6f8b0e66f379a3f82fad839");
+            URL url = new URL("https://api.flightapi.io/airline/61d3809713b15b74ee7b9a07?num=113&name=BA&date=20201223");
 
 //            URL url = new URL("https://jsonplaceholder.typicode.com/users");
             connection = (HttpURLConnection) url.openConnection();
@@ -66,8 +66,8 @@ public class ExampleClass {
     public static void parse(String s) {
         try {
             JSONObject jsonObject = new JSONObject(s);
-            JSONArray jsonArray = jsonObject.getJSONArray("data");
-
+//            JSONArray jsonArray = jsonObject.getJSONArray("data");
+            System.out.println(jsonObject.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }

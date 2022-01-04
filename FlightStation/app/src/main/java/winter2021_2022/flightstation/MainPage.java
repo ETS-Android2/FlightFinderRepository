@@ -19,6 +19,7 @@ public class MainPage extends AppCompatActivity {
     private Button login;
     private Button signup;
 
+
     /* Used for departure and return dates */
     Calendar calendar = Calendar.getInstance();
     final int year = calendar.get(Calendar.YEAR);
