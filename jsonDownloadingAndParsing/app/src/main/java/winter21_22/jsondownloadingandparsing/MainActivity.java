@@ -14,10 +14,13 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -47,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 //
 //        setContentsOfTextView(R.id.text, firstName);
 
-        new jsonTask().execute(url);
+//        new jsonTask().execute(url);
 //        setContentsOfTextView(R.id.text, s.toString());
 
     }
@@ -61,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... param) {
-            counter ++;
+            String tempResult = "";
             try {
                 URL myurl = new URL(param[0]);
                 HttpURLConnection urlConnection = (HttpURLConnection) myurl.openConnection();
@@ -79,28 +82,37 @@ public class MainActivity extends AppCompatActivity {
                     builder.append(line);
                 }
 
-                if (counter == 0) {
-                    result = builder.toString();
-                }
-                else {
-                    result2 = builder.toString();
-                }
+                tempResult = builder.toString();
                 reader.close();
 
-                Log.e("Json", result);
+//                Log.e("Json", result);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return result;
+            return tempResult;
         }
 
         @Override
         protected void onPostExecute(String s) {
-
             super.onPostExecute(s);
-            setResult(s);
+
+            if (counter == 0) {
+                setResult(s);
+            }
+            else {
+                setResult2(s);
+            }
+            counter ++;
+//            if (counter == 0) {
+//                setResult(s);
+//            }
+//            else {
+//                setResult2(s);
+//            }
+//            counter ++;
+
 //            String names = "";
 //            try {
 //                JSONObject jsonObject = new JSONObject(s);
@@ -157,6 +169,10 @@ public class MainActivity extends AppCompatActivity {
         result = a;
     }
 
+    public void setResult2(String a) {
+        result2 = a;
+    }
+
     public void buttonAddaNewAccount(View view) {
         String url = "https://api.npoint.io/8d8df57b1acc46aeb49d";
         new jsonTask().execute(url);
@@ -166,7 +182,6 @@ public class MainActivity extends AppCompatActivity {
         new jsonTask().execute(url2);
         setContentsOfTextView(R.id.textTest, "2" + result2);
     }
-
 
     /*This mutator sets the output level*/ // ---> More like a *system.out.println*
     public void setContentsOfTextView(int id, String newContents) {
