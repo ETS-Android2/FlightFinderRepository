@@ -25,8 +25,8 @@ public class ExampleClass {
         StringBuilder responseContent = new StringBuilder(); // the type can be StringBuffer;
 
         try {
-            URL url = new URL("https://graph.facebook.com/19292868552");
-
+            URL url = new URL("https://api.travelpayouts.com/v1/prices/cheap?origin=IST&destination=DXB&depart_date=2022-01-12&token=4645c33fe573cc92391d5fd0c496e8c0");
+    // 61d3809713b15b74ee7b9a07
 //            URL url = new URL("https://jsonplaceholder.typicode.com/users");
             connection = (HttpURLConnection) url.openConnection();
 

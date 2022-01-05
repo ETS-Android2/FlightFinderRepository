@@ -34,8 +34,11 @@ public class MainActivity extends AppCompatActivity {
 //     String url = "http://api.aviationstack.com/v1/flights\n? access_key = a040cf28d6f8b0e66f379a3f82fad839";
 //    String url = "https://api.flightapi.io/iata/61d3809713b15b74ee7b9a07/new%20york/airport"; // flightapi.io
 //    String url = "https://api.npoint.io/1192ddce993fbd4bbc7e";
-    String url = "https://api.npoint.io/8d8df57b1acc46aeb49d";
 //    String url = "https://api.npoint.io/8d8df57b1acc46aeb49d";
+//    String url = "https://api.npoint.io/8d8df57b1acc46aeb49d";
+
+//    String url = "https://api.flightapi.io/iata/61d3809713b15b74ee7b9a07/new%20york/airport";
+
 
 
 
@@ -83,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 tempResult = builder.toString();
+                Log.e("Json", tempResult);
                 reader.close();
 
 //                Log.e("Json", result);
@@ -97,14 +101,18 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            setResult(s);
 
-            if (counter == 0) {
-                setResult(s);
-            }
-            else {
-                setResult2(s);
-            }
-            counter ++;
+            setContentsOfTextView(R.id.text, "1:" + s);
+
+
+//            if (counter == 0) {
+//                setResult(s);
+//            }
+//            else {
+//                setResult2(s);
+//            }
+//            counter ++;
 //            if (counter == 0) {
 //                setResult(s);
 //            }
@@ -174,13 +182,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buttonAddaNewAccount(View view) {
-        String url = "https://api.npoint.io/8d8df57b1acc46aeb49d";
+        String url = "https://api.flightapi.io/iata/61d3809713b15b74ee7b9a07/new%20york/airport";
         new jsonTask().execute(url);
         setContentsOfTextView(R.id.text, "1:" + result);
 
-        String url2 = "https://jsonplaceholder.typicode.com/users";
-        new jsonTask().execute(url2);
-        setContentsOfTextView(R.id.textTest, "2" + result2);
+//        String url2 = "https://jsonplaceholder.typicode.com/users";
+//        new jsonTask().execute(url2);
+//        setContentsOfTextView(R.id.textTest, "2" + result);
     }
 
     /*This mutator sets the output level*/ // ---> More like a *system.out.println*
