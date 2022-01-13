@@ -30,16 +30,33 @@ public class ExampleClass {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         Request request = new Request.Builder()
-                .url("https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=SYD&destinationLocationCode=BKK&departureDate=2022-02-01&returnDate=2022-02-18&adults=2&max=5")
-                .addHeader("Authorization", "Bearer " + "YBF24aRIq6xnUiyf9k0SAGVdo9aR")
+                .url("https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=SYD&destinationLocationCode=BKK&departureDate=2022-02-01&returnDate=2022-03-18&adults=2&max=5")
+                .addHeader("Authorization", "Bearer " + "hjMOKA7DS68jo9NAE7MzsCQmXPmN")
                 .method("GET", null)
                 .build();
-        try {
-            Response response = client.newCall(request).execute();
-            System.out.println(response.body().string());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+//                OkHttpClient client = new OkHttpClient().newBuilder()
+//                .build();
+//                Request request = new Request.Builder()
+//                .url("https://api.npoint.io/8d8df57b1acc46aeb49d")
+//                .method("GET", null)
+//                .build();
+
+            try {
+                Response response = client.newCall(request).execute();
+
+                String responseString = response.body().string();
+                System.out.println(responseString);
+//                try {
+//                    JSONObject jsonObject = new JSONObject(responseString);
+//                    System.out.println(jsonObject.toString());
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
 //        // Https Request using java.net.HttpURLConnection
 //        HttpURLConnection connection;

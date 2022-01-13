@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 //     String url = "http://api.aviationstack.com/v1/flights?access_key=a040cf28d6f8b0e66f379a3f82fad839";
 //    String url = "https://api.flightapi.io/iata/61d3809713b15b74ee7b9a07/new%20york/airport"; // flightapi.io
 //    String url = "https://api.npoint.io/1192ddce993fbd4bbc7e";
-//    String url = "https://api.npoint.io/8d8df57b1acc46aeb49d";
+    String url = "https://api.npoint.io/8d8df57b1acc46aeb49d";
 //    String url = "https://api.npoint.io/8d8df57b1acc46aeb49d";
 
 //    String url = "https://api.flightapi.io/iata/61d3809713b15b74ee7b9a07/new%20york/airport";
@@ -73,9 +73,35 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... param) {
-//            String tempResult = "";
+            String tempResult = "";
+
+            OkHttpClient client = new OkHttpClient().newBuilder()
+            .build();
+            Request request = new Request.Builder()
+            .url("https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=SYD&destinationLocationCode=BKK&departureDate=2022-02-01&returnDate=2022-03-18&adults=2&max=5")
+            .addHeader("Authorization", "Bearer " + "91s2FrgtPDVKiKWYrluv2zsWrVmP")
+            .method("GET", null)
+            .build();
+
+//                OkHttpClient client = new OkHttpClient().newBuilder()
+//                .build();
+//                Request request = new Request.Builder()
+//                .url("https://api.npoint.io/8d8df57b1acc46aeb49d")
+//                .method("GET", null)
+//                .build();
+
+            try {
+                Response response = client.newCall(request).execute();
+
+                String responseString = response.body().string();
+                tempResult = responseString;
+                Log.e("Json", tempResult);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        return tempResult;
 //            try {
-//                URL myurl = new URL(param[0]);
+//                URL myurl = new URL(url);
 //                HttpURLConnection urlConnection = (HttpURLConnection) myurl.openConnection();
 //                urlConnection.setRequestMethod("GET");
 //                urlConnection.setConnectTimeout(5000); //5000 milli seconds
@@ -102,22 +128,6 @@ public class MainActivity extends AppCompatActivity {
 //                e.printStackTrace();
 //            }
 //            return tempResult;
-
-            Response response = null;
-            OkHttpClient client = new OkHttpClient().newBuilder()
-                    .build();
-            Request request = new Request.Builder()
-                    .url("https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=SYD&destinationLocationCode=BKK&departureDate=2022-02-01&returnDate=2022-02-18&adults=2&max=5")
-                    .addHeader("Authorization", "Bearer " + "YBF24aRIq6xnUiyf9k0SAGVdo9aR")
-                    .method("GET", null)
-                    .build();
-            try {
-                response = client.newCall(request).execute();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return response.body().toString();
         }
 
         @Override
@@ -125,7 +135,30 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(s);
             setResult(s);
 
-            setContentsOfTextView(R.id.text, "1:" + s);
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                JSONArray data = jsonObject.getJSONArray("data");
+                JSONObject js1 = data.getJSONObject(0);
+                String numberOfBookableSeats = js1.getString("numberOfBookableSeats");
+                setContentsOfTextView(R.id.text, "1:" + numberOfBookableSeats);
+
+//                JSONObject meta = jsonObject.getJSONObject("meta");
+//                String count = meta.getString("count");
+//                setContentsOfTextView(R.id.text, "1:" + count);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+//            try {
+//                JSONObject jsonObject = new JSONObject(s);
+//                JSONArray jsonArray = jsonObject.getJSONArray("Users");
+//                JSONObject firstUser = jsonArray.getJSONObject(0);
+//                String name = firstUser.getString("name");
+//                setContentsOfTextView(R.id.text, "1:" + name);
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
 
 
 //            if (counter == 0) {
