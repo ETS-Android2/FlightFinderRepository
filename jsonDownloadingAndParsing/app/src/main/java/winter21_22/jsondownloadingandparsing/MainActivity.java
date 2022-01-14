@@ -8,20 +8,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.amadeus.android.Amadeus;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -29,9 +20,11 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    String result = "";
-    String result2 = "";
     static int counter = 0;
+
+    static String newResult = "";
+
+    String nobS = "";
 
 //        String url = "https://jsonplaceholder.typicode.com/users";
 //    String url = "http://api.aviationstack.com/v1/flights?access_key=a040cf28d6f8b0e66f379a3f82fad839\n";
@@ -53,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+
+
 //        DataUsers dataUsers = new DataUsers();
 //        dataUsers.getDataFromUrl();
 //        String firstName = dataUsers.getFirstName();
@@ -60,11 +55,12 @@ public class MainActivity extends AppCompatActivity {
 //        setContentsOfTextView(R.id.text, firstName);
 
         new jsonTask().execute();
-//        setContentsOfTextView(R.id.text, s.toString());
+        setContentsOfTextView(R.id.text, newResult);
 
     }
 
     class jsonTask extends AsyncTask<String, String, String> {
+
 
         @Override
         protected void onPreExecute() {
@@ -75,26 +71,25 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(String... param) {
             String tempResult = "";
 
-            OkHttpClient client = new OkHttpClient().newBuilder()
-            .build();
-            Request request = new Request.Builder()
-            .url("https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=SYD&destinationLocationCode=BKK&departureDate=2022-02-01&returnDate=2022-03-18&adults=2&max=5")
-            .addHeader("Authorization", "Bearer " + "91s2FrgtPDVKiKWYrluv2zsWrVmP")
-            .method("GET", null)
-            .build();
+//            OkHttpClient client = new OkHttpClient().newBuilder()
+//            .build();
+//            Request request = new Request.Builder()
+//            .url("https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=SYD&destinationLocationCode=BKK&departureDate=2022-02-01&returnDate=2022-03-18&adults=2&max=5")
+//            .addHeader("Authorization", "Bearer " + "nGfTxZqjzsPtSg4Gp0L8eXUgFS1E")
+//            .method("GET", null)
+//            .build();
 
-//                OkHttpClient client = new OkHttpClient().newBuilder()
-//                .build();
-//                Request request = new Request.Builder()
-//                .url("https://api.npoint.io/8d8df57b1acc46aeb49d")
-//                .method("GET", null)
-//                .build();
+                OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+                Request request = new Request.Builder()
+                .url("https://api.npoint.io/8d8df57b1acc46aeb49d")
+                .method("GET", null)
+                .build();
 
             try {
                 Response response = client.newCall(request).execute();
 
-                String responseString = response.body().string();
-                tempResult = responseString;
+                newResult = response.body().string();
                 Log.e("Json", tempResult);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -133,21 +128,21 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            setResult(s);
 
-            try {
-                JSONObject jsonObject = new JSONObject(s);
-                JSONArray data = jsonObject.getJSONArray("data");
-                JSONObject js1 = data.getJSONObject(0);
-                String numberOfBookableSeats = js1.getString("numberOfBookableSeats");
-                setContentsOfTextView(R.id.text, "1:" + numberOfBookableSeats);
-
-//                JSONObject meta = jsonObject.getJSONObject("meta");
-//                String count = meta.getString("count");
-//                setContentsOfTextView(R.id.text, "1:" + count);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                JSONObject jsonObject = new JSONObject(s);
+//                JSONArray data = jsonObject.getJSONArray("data");
+//                JSONObject js1 = data.getJSONObject(0);
+//                String numberOfBookableSeats = js1.getString("numberOfBookableSeats");
+////                setContentsOfTextView(R.id.text, "1:" + numberOfBookableSeats);
+//
+//                nobS = numberOfBookableSeats;
+////                JSONObject meta = jsonObject.getJSONObject("meta");
+////                String count = meta.getString("count");
+////                setContentsOfTextView(R.id.text, "1:" + count);
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
 
 
 //            try {
@@ -228,12 +223,84 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void setResult(String a) {
-        result = a;
-    }
+//    class getDataFromUrl implements Runnable {
+//        String url;
+//
+//        String result;
+//
+//        public getDataFromUrl() {
+//            this.result = "";
+//        }
+//
+//        public String getResult() {
+//            return this.result;
+//        }
+//
+//        @Override
+//        public void run() {
+////            OkHttpClient client = new OkHttpClient().newBuilder()
+////                    .build();
+////            Request request = new Request.Builder()
+////                    .url("https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=SYD&destinationLocationCode=BKK&departureDate=2022-02-01&returnDate=2022-03-18&adults=2&max=5")
+////                    .addHeader("Authorization", "Bearer " + "nGfTxZqjzsPtSg4Gp0L8eXUgFS1E")
+////                    .method("GET", null)
+////                    .build();
+//
+//                OkHttpClient client = new OkHttpClient().newBuilder()
+//                .build();
+//                Request request = new Request.Builder()
+//                .url("https://api.npoint.io/8d8df57b1acc46aeb49d")
+//                .method("GET", null)
+//                .build();
+//
+//            try {
+//                Response response = client.newCall(request).execute();
+//                this.result = response.body().string();
+//                Log.e("Json", this.result);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
-    public void setResult2(String a) {
-        result2 = a;
+    class getDataFromUrl extends Thread {
+
+                String url;
+
+        String result;
+
+        public getDataFromUrl() {
+            this.result = "";
+        }
+
+        public String getResult() {
+            return this.result;
+        }
+        @Override
+        public void run() {
+//            OkHttpClient client = new OkHttpClient().newBuilder()
+//                    .build();
+//            Request request = new Request.Builder()
+//                    .url("https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=SYD&destinationLocationCode=BKK&departureDate=2022-02-01&returnDate=2022-03-18&adults=2&max=5")
+//                    .addHeader("Authorization", "Bearer " + "nGfTxZqjzsPtSg4Gp0L8eXUgFS1E")
+//                    .method("GET", null)
+//                    .build();
+
+                OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+                Request request = new Request.Builder()
+                .url("https://api.npoint.io/8d8df57b1acc46aeb49d")
+                .method("GET", null)
+                .build();
+
+            try {
+                Response response = client.newCall(request).execute();
+                this.result = response.body().string();
+                Log.e("Json", this.result);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void buttonAddaNewAccount(View view) {
@@ -244,6 +311,35 @@ public class MainActivity extends AppCompatActivity {
 //        String url2 = "https://jsonplaceholder.typicode.com/users";
 //        new jsonTask().execute(url2);
 //        setContentsOfTextView(R.id.textTest, "2" + result);
+
+    getDataFromUrl getDataFromUrl = new getDataFromUrl();
+    getDataFromUrl.start();
+
+    String result = getDataFromUrl.getResult();
+        Log.e("Json", getDataFromUrl.getResult());
+
+        view = findViewById(R.id.text);
+        TextView textView = (TextView) view;
+        textView.setText(getDataFromUrl.getResult());
+
+
+//    try {
+//        JSONObject jsonObject = new JSONObject(result);
+//        JSONArray jsonArray = jsonObject.getJSONArray("Users");
+//        JSONObject firstUser = jsonArray.getJSONObject(0);
+//        String name = firstUser.getString("name");
+//
+//        view = findViewById(R.id.text);
+//        TextView textView = (TextView) view;
+//        textView.setText(getDataFromUrl.getResult());
+//
+//    } catch (JSONException e) {
+//        e.printStackTrace();
+//    }
+
+//    new jsonTask().execute();
+
+
     }
 
     /*This mutator sets the output level*/ // ---> More like a *system.out.println*
