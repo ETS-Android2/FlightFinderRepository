@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
 //
 //        setContentsOfTextView(R.id.text, firstName);
 
-        new jsonTask().execute();
-        setContentsOfTextView(R.id.text, newResult);
+//        new jsonTask().execute();
+//        setContentsOfTextView(R.id.text, newResult);
 
     }
 
@@ -265,9 +265,19 @@ public class MainActivity extends AppCompatActivity {
 
     class getDataFromUrl extends Thread {
 
-                String url;
+        String url;
 
         String result;
+
+        String name;
+
+        public void setN(String name) {
+            this.name = name;
+        }
+
+        public String getN() {
+            return this.name;
+        }
 
         public getDataFromUrl() {
             this.result = "";
@@ -296,6 +306,23 @@ public class MainActivity extends AppCompatActivity {
             try {
                 Response response = client.newCall(request).execute();
                 this.result = response.body().string();
+
+                    try {
+                    JSONObject jsonObject = new JSONObject(this.result);
+                    JSONArray jsonArray = jsonObject.getJSONArray("Users");
+                    JSONObject firstUser = jsonArray.getJSONObject(0);
+                    String name = firstUser.getString("name");
+
+                    this.setN(name);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+//                View view = findViewById(R.id.text);
+//                TextView textView = (TextView) view;
+//                textView.setText("HI how are you doing");
+
                 Log.e("Json", this.result);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -312,15 +339,17 @@ public class MainActivity extends AppCompatActivity {
 //        new jsonTask().execute(url2);
 //        setContentsOfTextView(R.id.textTest, "2" + result);
 
-    getDataFromUrl getDataFromUrl = new getDataFromUrl();
-    getDataFromUrl.start();
-
-    String result = getDataFromUrl.getResult();
-        Log.e("Json", getDataFromUrl.getResult());
+    BackgroundProcess backgroundProcess = new BackgroundProcess();
+    new Thread(backgroundProcess).start();
+    String res = backgroundProcess.getResult();
 
         view = findViewById(R.id.text);
         TextView textView = (TextView) view;
-        textView.setText(getDataFromUrl.getResult());
+        textView.setText(res);
+//    String result = getDataFromUrl.getResult();
+//        Log.e("Json", getDataFromUrl.getResult());
+
+
 
 
 //    try {
