@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 //
 //        setContentsOfTextView(R.id.text, firstName);
 
-//        new jsonTask().execute();
+        new jsonTask().execute();
 //        setContentsOfTextView(R.id.text, newResult);
 
     }
@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 Response response = client.newCall(request).execute();
 
                 newResult = response.body().string();
+                tempResult = newResult;
                 Log.e("Json", tempResult);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -128,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            setContentsOfTextView(R.id.text, s);
 
 //            try {
 //                JSONObject jsonObject = new JSONObject(s);

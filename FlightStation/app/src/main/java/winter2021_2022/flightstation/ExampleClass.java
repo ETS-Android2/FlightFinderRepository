@@ -31,7 +31,7 @@ public class ExampleClass {
                 .build();
         Request request = new Request.Builder()
                 .url("https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=SYD&destinationLocationCode=BKK&departureDate=2022-02-01&returnDate=2022-03-18&adults=2&max=5")
-                .addHeader("Authorization", "Bearer " + "hjMOKA7DS68jo9NAE7MzsCQmXPmN")
+                .addHeader("Authorization", "Bearer " + "dCDngvsITGd36p4vZlEqArp63Vwt")
                 .method("GET", null)
                 .build();
 
