@@ -11,4 +11,13 @@ It has features such as:
 
 Here are some of the current User interface of the application:
 
+***Home Page***
+![HomeScreen](https://user-images.githubusercontent.com/67298880/150369703-23decf68-f33d-42a3-879c-96890bcd1d1e.png)
 
+***Sing up Page***
+![SignUpPage](https://user-images.githubusercontent.com/67298880/150369797-6e6a7013-8bfb-4099-ac88-9a4b4ad2f023.png)
+
+***Sign in Page***
+![LogInPage](https://user-images.githubusercontent.com/67298880/150369812-696b1433-b304-420f-8007-775313296620.png)
+
+Note: This is an ongoing projects. Therefore, a lot of new features are being implemented regularly.
