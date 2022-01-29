@@ -14,7 +14,7 @@ Here are some of the current User interfaces of the application:
 
 <img src="https://user-images.githubusercontent.com/67298880/150369703-23decf68-f33d-42a3-879c-96890bcd1d1e.png" width="150" height="300" />
 
-***Sing up Page***
+***Sign up Page***
 
 <img src="https://user-images.githubusercontent.com/67298880/150369797-6e6a7013-8bfb-4099-ac88-9a4b4ad2f023.png" width="150" height="300" />
 
